@@ -1,0 +1,19 @@
+table {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+table tr td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+input {
+  font-size: 1.6em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}

@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>
+          <h1>{{ .Text }}</h1>
+          <ul>
+          {{ range .Translations }}
+            <li>
+            {{ . }}
+            </li>
+          {{ end }}
+          </ul>
+          <ul>
+          {{ range .Sounds }}
+            <li>
+              <audio src="{{ . }}" controls="controls"></audio>
+            </li>
+          {{ end }}
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

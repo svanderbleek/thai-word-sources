@@ -1,0 +1,8 @@
+<Scraper>
+  <Property name="id" selector="#WordId">
+    <Filter type="attr" argument="value"/>
+  </Property>
+  <Each name="translations" selector=".meanings-list-item">
+    <Property name="translation" selector=".meaning-english"/>
+  </Each>
+</Scraper>
