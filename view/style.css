@@ -10,10 +10,25 @@ table tr td {
 }
 
 input {
-  font-size: 1.6em;
+  font-size: 8em;
+  border: none;
+  outline: none;
+  text-align: center;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0 auto .2em auto;
+  max-width: 40em;
+}
+
+p {
+  text-align: left;
+  font-size: 2em;
+}
+
+h1 {
+  font-size: 8em;
+  margin: 0;
 }

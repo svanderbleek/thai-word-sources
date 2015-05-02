@@ -8,16 +8,16 @@
         <td>
           <h1>{{ .Text }}</h1>
           <ul>
-          {{ range .Translations }}
+          {{ range .Sounds }}
             <li>
-            {{ . }}
+              <audio src="{{ . }}" controls="controls"></audio>
             </li>
           {{ end }}
           </ul>
           <ul>
-          {{ range .Sounds }}
+          {{ range .Translations }}
             <li>
-              <audio src="{{ . }}" controls="controls"></audio>
+              <p>{{ . }}</p>
             </li>
           {{ end }}
           </ul>
