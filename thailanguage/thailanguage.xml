@@ -1,0 +1,9 @@
+<Scraper>
+  <Property name="id" selector="link[rel=canonical]">
+    <Filter type="attr" argument="href"/>
+    <Filter type="regex" argument="([1-9]+)$"/>
+  </Property>
+  <Each name="translations" selector=".df">
+    <Property name="text" selector="b"/>
+  </Each>
+</Scraper>

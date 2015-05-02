@@ -4,6 +4,7 @@ import (
 	"./forvo"
 	"./sources"
 	"./thai2english"
+	"./thailanguage"
 	"html/template"
 	"net/http"
 )
@@ -31,18 +32,18 @@ func routes() *http.ServeMux {
 }
 
 func styleSheet(response http.ResponseWriter, request *http.Request) {
-	http.ServeFile(response, request, "style.css")
+	http.ServeFile(response, request, "view/style.css")
 }
 
 func homePage(response http.ResponseWriter, request *http.Request) {
-	http.ServeFile(response, request, "home.html")
+	http.ServeFile(response, request, "view/home.html")
 }
 
 func wordPage(response http.ResponseWriter, request *http.Request) {
 	query := request.FormValue("query")
-	source := sources.Bundle(thai2english.Search, forvo.Search)
+	source := sources.Bundle(thai2english.Search, forvo.Search, thailanguage.Search)
 	word := source(query)
 	word.Text = query
-	wordTemplate := template.Must(template.ParseFiles("word.html"))
+	wordTemplate := template.Must(template.ParseFiles("view/word.html"))
 	wordTemplate.Execute(response, word)
 }

@@ -1,31 +1,15 @@
 package thai2english
 
 import (
+	"../scrape"
 	"../words"
 	"fmt"
-	"github.com/ernesto-jimenez/scraperboard"
 	"net/url"
 )
 
-func Search(text string) words.Word {
-	result := fetchResult(text)
-	fmt.Println(result)
-	return words.Word{
-		Sounds:       soundsFrom(result),
-		Translations: translationsFrom(result),
-	}
-}
-
-func soundsFrom(result Result) []string {
-	return []string{soundUrl(result.Id)}
-}
-
-func translationsFrom(result Result) []string {
-	var translations []string
-	for _, translation := range result.Translations {
-		translations = append(translations, translation.Translation)
-	}
-	return translations
+type Result struct {
+	Id           string
+	Translations []scrape.TextResult
 }
 
 const (
@@ -34,25 +18,20 @@ const (
 	scraperFile = "thai2english/thai2english.xml"
 )
 
-type Translation struct {
-	Translation string
-}
-
-type Result struct {
-	Id           string
-	Translations []Translation
-}
-
 var (
-	scraper = buildScraper()
+	scraper = scrape.Scraper(scraperFile)
 )
 
-func buildScraper() scraperboard.Scraper {
-	scraper, err := scraperboard.NewScraperFromFile(scraperFile)
-	if err != nil {
-		panic(err)
+func Search(text string) words.Word {
+	result := fetchResult(text)
+	return words.Word{
+		Sounds:       soundsFrom(result),
+		Translations: scrape.Strings(result.Translations),
 	}
-	return scraper
+}
+
+func soundsFrom(result Result) []string {
+	return []string{soundUrl(result.Id)}
 }
 
 func fetchResult(text string) Result {
