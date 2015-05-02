@@ -27,11 +27,19 @@ Results can be combined from sources.
 
 ```
 import (
-  "words"
+  "sources"
   "thai2english"
   "forvo"
 )
 
-source := words.CombineSources(thai2english, forvo)
-word := source.Search("ไม่")
+source := sources.Bundle(thai2english.Search, forvo.Search)
+word := source("ไม่")
+```
+
+There is a server that demos functionality.
+
+```
+go build -o server
+./server
+open http://localhost:8080/
 ```
